@@ -1,0 +1,14 @@
+# ── UI Framework ─────────────────────────────────────────────────
+PyQt6==6.11.0
+
+# ── Windows Utilities ─────────────────────────────────────────────
+pywin32==311
+
+# ── Network ───────────────────────────────────────────────────────
+requests==2.33.1
+
+# ── Build ─────────────────────────────────────────────────────────
+pyinstaller>=6.0.0
+
+# Note: whisper.cpp / faster-whisper should be installed separately.
+# whisper-cpp-python or faster-whisper depending on your system.
