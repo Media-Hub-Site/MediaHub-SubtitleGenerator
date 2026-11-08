@@ -83,7 +83,7 @@ class SubtitleGeneratorUI(QWidget):
         card, card_layout = make_card_container()
 
         top_layout = QHBoxLayout()
-        back_btn = QPushButton("← Volver al Hub")
+        back_btn = QPushButton("Salir")
         back_btn.setFixedWidth(130)
         back_btn.clicked.connect(self.go_back)
         back_btn.setStyleSheet(get_soft_button_style())
@@ -175,11 +175,7 @@ class SubtitleGeneratorUI(QWidget):
                     self.media_label.setText(f"{len(self.batch_files)} archivos seleccionados")
 
     def go_back(self):
-        from core.ui.hub_window import HubWindow
-        self.hub_window = HubWindow()
-        self.hub_window.show()
         self.close()
-
     def select_media(self):
         file_dialog = QFileDialog()
         file_paths, _ = file_dialog.getOpenFileNames(self, "Seleccionar Multimedia", "", "Multimedia (*.mp4 *.mkv *.avi *.mov *.webm *.mp3 *.wav *.m4a *.ogg)")
