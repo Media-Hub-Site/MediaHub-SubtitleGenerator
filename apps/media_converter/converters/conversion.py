@@ -1,13 +1,21 @@
+from __future__ import annotations
+try:
+    from PIL import Image, ImageFile
+    ImageFile.LOAD_TRUNCATED_IMAGES = True
+except ImportError:
+    class _DummyImage:
+        Image = object
+    Image = _DummyImage
+    ImageFile = None
+
 #-----------------------------------------------
 # Convertidor de Imagenes
 #-----------------------------------------------
 
-from PIL import Image, ImageFile
 import os
 import shutil
 
 # Pillow sometimes fails on truncated images; enable loading anyway
-ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 def _prepare_dest(ruta_destino: str) -> str:
@@ -616,7 +624,7 @@ class WatermarkLogic:
 
     @staticmethod
     def _watermark_image(ruta_origen, ruta_destino, watermark_path, position, opacity):
-        from PIL import Image
+        # from PIL import Image
         import os
         base_image = Image.open(ruta_origen).convert("RGBA")
         watermark = Image.open(watermark_path).convert("RGBA")
