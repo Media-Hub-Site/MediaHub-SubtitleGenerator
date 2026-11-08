@@ -2,7 +2,7 @@ import sys
 import traceback
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
-from apps.media_converter.ui.subtitle_generator import SubtitleGeneratorUI
+from apps.media_converter.ui.subtitle_window import SubtitleWindow
 
 
 def global_exception_handler(exc_type, exc_value, exc_traceback):
@@ -22,7 +22,7 @@ sys.excepthook = global_exception_handler
 
 def main():
     app = QApplication(sys.argv)
-    window = SubtitleGeneratorUI()
+    window = SubtitleWindow()
     window.show()
     sys.exit(app.exec())
 
