@@ -128,7 +128,7 @@ class SubtitleWindow(QMainWindow):
         header.addLayout(h_text)
         header.addStretch()
 
-        self.btn_open_folder = QPushButton("📁 Abrir Carpeta")
+        self.btn_open_folder = QPushButton("Abrir Carpeta")
         self.btn_open_folder.setObjectName("btnSecondary")
         self.btn_open_folder.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_open_folder.clicked.connect(self._open_downloads_dir)
@@ -190,7 +190,7 @@ class SubtitleWindow(QMainWindow):
         lp_layout.addSpacing(10)
 
         # Botón Generar SRT
-        self.btn_generate = QPushButton("🪄 Generar Subtítulos (.srt)")
+        self.btn_generate = QPushButton("Generar Subtítulos (.srt)")
         self.btn_generate.setObjectName("btnAccent")
         self.btn_generate.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_generate.clicked.connect(self._start_transcription)
@@ -205,7 +205,7 @@ class SubtitleWindow(QMainWindow):
         self.combo_burn_style.addItems(["Amarillo estilo Reels / TikTok", "Blanco Clásico con Borde"])
         lp_layout.addWidget(self.combo_burn_style)
 
-        self.btn_burn = QPushButton("🎬 Exportar Video con Subtítulos")
+        self.btn_burn = QPushButton("Exportar Video con Subtítulos")
         self.btn_burn.setObjectName("btnBurn")
         self.btn_burn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_burn.setEnabled(False)
@@ -228,7 +228,7 @@ class SubtitleWindow(QMainWindow):
         rp_header.addWidget(rp_title)
         rp_header.addStretch()
 
-        self.btn_save_edits = QPushButton("💾 Guardar Cambios")
+        self.btn_save_edits = QPushButton("Guardar Cambios")
         self.btn_save_edits.setObjectName("btnSecondary")
         self.btn_save_edits.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_save_edits.setEnabled(False)
@@ -264,7 +264,7 @@ class SubtitleWindow(QMainWindow):
         )
         if file:
             self.selected_media = file
-            self.lbl_file.setText(f"📄 {os.path.basename(file)}")
+            self.lbl_file.setText(os.path.basename(file))
             self.status_label.setText("Archivo listo para transcribir.")
             self.current_srt_path = None
             self.srt_editor.clear()
@@ -321,7 +321,7 @@ class SubtitleWindow(QMainWindow):
         self.progress_bar.setVisible(False)
         self.current_srt_path = srt_path
         self.srt_editor.setPlainText(content)
-        self.status_label.setText(f"✅ Subtítulos guardados en: {os.path.basename(srt_path)}")
+        self.status_label.setText(f"Subtítulos guardados en: {os.path.basename(srt_path)}")
         self.btn_save_edits.setEnabled(True)
 
         # Si el archivo original es video, habilitamos incrustar
@@ -332,7 +332,7 @@ class SubtitleWindow(QMainWindow):
     def _on_worker_error(self, err: str):
         self.btn_generate.setEnabled(True)
         self.progress_bar.setVisible(False)
-        self.status_label.setText("❌ Error generando subtítulos")
+        self.status_label.setText("Error generando subtítulos")
         QMessageBox.critical(self, "Error de Transcripción", err)
 
     def _save_srt_edits(self):
@@ -341,7 +341,7 @@ class SubtitleWindow(QMainWindow):
         try:
             with open(self.current_srt_path, "w", encoding="utf-8") as f:
                 f.write(self.srt_editor.toPlainText())
-            self.status_label.setText("✅ Cambios en el archivo SRT guardados correctamente.")
+            self.status_label.setText("Cambios en el archivo SRT guardados correctamente.")
             QMessageBox.information(self, "Guardado", "El archivo SRT se ha actualizado.")
         except Exception as e:
             QMessageBox.critical(self, "Error al guardar", str(e))
@@ -372,7 +372,7 @@ class SubtitleWindow(QMainWindow):
     def _on_burn_finished(self, out_path: str):
         self.btn_burn.setEnabled(True)
         self.progress_bar.setVisible(False)
-        self.status_label.setText(f"✅ Video subtitulado exportado: {os.path.basename(out_path)}")
+        self.status_label.setText(f"Video subtitulado exportado: {os.path.basename(out_path)}")
         QMessageBox.information(
             self, "Video Completado",
             f"El video con subtítulos incrustados se guardó en:\n{out_path}"
@@ -381,7 +381,7 @@ class SubtitleWindow(QMainWindow):
     def _on_burn_error(self, err: str):
         self.btn_burn.setEnabled(True)
         self.progress_bar.setVisible(False)
-        self.status_label.setText("❌ Error incrustando subtítulos")
+        self.status_label.setText("Error incrustando subtítulos")
         QMessageBox.critical(self, "Error de Video", err)
 
     def _apply_styles(self):
