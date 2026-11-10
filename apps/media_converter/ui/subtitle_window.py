@@ -21,6 +21,7 @@ from PyQt6.QtCore import Qt, QThread, pyqtSignal
 
 from apps.media_converter.converters.whisper_logic import WhisperSubtitleLogic
 from apps.media_converter.i18n import t, get_current_language
+from core.sound_manager import SoundManager
 
 
 def get_asset(filename):
@@ -318,6 +319,7 @@ class SubtitleWindow(QMainWindow):
         self.status_label.setText(msg)
 
     def _on_worker_finished(self, srt_path: str, content: str):
+        SoundManager.instance().play("success")
         self.btn_generate.setEnabled(True)
         self.progress_bar.setVisible(False)
         self.current_srt_path = srt_path
@@ -371,6 +373,7 @@ class SubtitleWindow(QMainWindow):
         self.burn_worker.start()
 
     def _on_burn_finished(self, out_path: str):
+        SoundManager.instance().play("success")
         self.btn_burn.setEnabled(True)
         self.progress_bar.setVisible(False)
         self.status_label.setText(f"Video subtitulado exportado: {os.path.basename(out_path)}")
