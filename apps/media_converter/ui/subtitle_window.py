@@ -20,6 +20,7 @@ from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
 
 from apps.media_converter.converters.whisper_logic import WhisperSubtitleLogic
+from apps.media_converter.i18n import t, get_current_language
 
 
 def get_asset(filename):
