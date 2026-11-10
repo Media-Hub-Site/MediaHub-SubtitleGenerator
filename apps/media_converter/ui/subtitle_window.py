@@ -91,7 +91,7 @@ class BurnWorker(QThread):
 class SubtitleWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Subtitle Generator — Whisper AI")
+        self.setWindowTitle(t("app_title"))
         self.resize(980, 640)
         self.setMinimumSize(920, 580)
 
@@ -128,7 +128,7 @@ class SubtitleWindow(QMainWindow):
         header.addLayout(h_text)
         header.addStretch()
 
-        self.btn_open_folder = QPushButton("Abrir Carpeta")
+        self.btn_open_folder = QPushButton(t("btn_open_folder"))
         self.btn_open_folder.setObjectName("btnSecondary")
         self.btn_open_folder.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_open_folder.clicked.connect(self._open_downloads_dir)
@@ -190,7 +190,7 @@ class SubtitleWindow(QMainWindow):
         lp_layout.addSpacing(10)
 
         # Botón Generar SRT
-        self.btn_generate = QPushButton("Generar Subtítulos (.srt)")
+        self.btn_generate = QPushButton(t("btn_generate"))
         self.btn_generate.setObjectName("btnAccent")
         self.btn_generate.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_generate.clicked.connect(self._start_transcription)
@@ -205,7 +205,7 @@ class SubtitleWindow(QMainWindow):
         self.combo_burn_style.addItems(["Amarillo estilo Reels / TikTok", "Blanco Clásico con Borde"])
         lp_layout.addWidget(self.combo_burn_style)
 
-        self.btn_burn = QPushButton("Exportar Video con Subtítulos")
+        self.btn_burn = QPushButton(t("btn_burn"))
         self.btn_burn.setObjectName("btnBurn")
         self.btn_burn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_burn.setEnabled(False)
@@ -228,7 +228,7 @@ class SubtitleWindow(QMainWindow):
         rp_header.addWidget(rp_title)
         rp_header.addStretch()
 
-        self.btn_save_edits = QPushButton("Guardar Cambios")
+        self.btn_save_edits = QPushButton(t("btn_save_edits"))
         self.btn_save_edits.setObjectName("btnSecondary")
         self.btn_save_edits.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_save_edits.setEnabled(False)
